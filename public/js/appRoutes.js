@@ -15,6 +15,10 @@ angular.module("AppRoutes", [])
         templateUrl: "views/welcome.html",
         controller: "WelcomeController"
       })
+      .when('/admin', {
+        templateUrl: "views/admin.html",
+        controller: "AdminController"
+      })
       .otherwise({
         templateUrl: "views/login.html",
         controller: "LoginController"

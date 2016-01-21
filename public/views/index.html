@@ -10,9 +10,19 @@
 <body ng-app="authApp" ng-controller="LoginController">
 
   <!-- header -->
+  <header>
+    <nav class="navbar navbar-inverse">
+      <ul class="nav navbar-nav">
+        <li><a href="/login">Log In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/welcome">Home</a></li>
+        <li><a href="/admin">Admin Portal</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- views -->
-  <div ng-view></div>
+  <div ng-view class="container"></div>
 
   <!-- footer -->
 
@@ -24,7 +34,8 @@
   <script src="js/controllers/LoginCtrl.js"></script>
   <script src="js/controllers/SignupCtrl.js"></script>
   <script src="js/controllers/WelcomeCtrl.js"></script>
-  <script src="js/services/LoginService.js"></script>
+  <script src="js/controllers/AdminCtrl.js"></script>
+  <script src="js/services/UserService.js"></script>
   <script src="js/appRoutes.js"></script>
   <script src="js/app.js"></script>
 </body>

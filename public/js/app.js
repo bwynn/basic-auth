@@ -1,2 +1,2 @@
 // public/js/app.js
-angular.module("authApp", ["ngRoute", "AppRoutes", "LoginCtrl", "SignupCtrl", "WelcomeCtrl", "LoginService"]);
+angular.module("authApp", ["ngRoute", "AppRoutes", "LoginCtrl", "SignupCtrl", "WelcomeCtrl", "AdminCtrl", "UserService"]);
