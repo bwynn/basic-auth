@@ -4,7 +4,15 @@
   "dependencies": {
     "express": "latest",
     "mongoose": "latest",
+    "passport": "latest",
+    "passport-local": "latest",
+    "passport-facebook": "latest",
+    "passport-twitter": "latest",
+    "passport-google-oauth": "latest",
+    "connect-flash": "latest",
+    "bcrypt-nodejs": "latest",
     "body-parser": "latest",
+    "cookie-parser": "latest",
     "method-override": "latest",
     "morgan": "latest",
     "jsonwebtoken": "latest"

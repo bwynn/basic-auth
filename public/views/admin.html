@@ -1,4 +1,11 @@
-{{hello}}
-<div ng-repeat="user in users track by $index">
-  {{user}}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>User Details</h1>
+  </div>
+  <div ng-repeat="user in users track by $index">
+    <h1>User's Name: {{user.username}}</h1>
+    <h3>User's Password: {{user.password}}</h3>
+    <h3>User's Id: {{user._id}}</h3>
+  </div>
+
 </div>

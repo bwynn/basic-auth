@@ -1,42 +1,15 @@
-// model schema requirements
-var User = require('../models/user');
-
 // packages
 var path = require("path");
 
-module.exports = function(app) {
+// model schema requirements
+var User = require('../models/user');
+
+module.exports = function(app, passport) {
 // server routes
 // =============================================================================
 
-// sign-up
-// to create a new user
-  // get
-  // app.get('/signin', cb);
-  app.get('/signup', function(req, res) {
-    res.json({message: "At the sign up page"});
-  })
-
-  // post
-  // app.post('/sign-in', cb);
-  app.post('/signup', function(req, res) {
-
-    // create a new User
-    var user = new User();
-
-    user.username = req.body.name;
-    user.password = req.body.password;
-    user.admin = false;
-
-    user.save(function(err) {
-      if (err) {
-        res.send(err);
-      }
-
-      res.json({message: "User successfully created"});
-    });
-  });
-
-// login
+// login routes
+// =============================================================================
 // get user details
   // get
   // app.get('/login', cb);
@@ -47,12 +20,55 @@ module.exports = function(app) {
 
   // post
   // app.post('/login', cb);
+  // route to authenticate a user (POST http://localhost:8080/login)
+  app.post('/login', passport.authenticate('local-login', {
+    successRedirect: '/profile', // redirect to the secure profile section
+    failureRedirect: '/', // redirect back to the login page
+    failureFlash: true // allow flash messages
+  }));
 
-// welcome
+// sign-up routes
+// =============================================================================
+// to create a new user
+// get
+// app.get('/signin', cb);
+app.get('/signup', function(req, res) {
+  res.json({message: "At the sign up page"});
+});
+
+// post
+// app.post('/sign-in', cb);
+app.post('/signup', passport.authenticate('local-signup', {
+  successRedirect: '/profile', // redirect to secure profile
+  failureRedirect: '/', // redirect the back to the signup page
+  failureFlash: true // allow flash messages
+}));
+
+// profile routes
+// =============================================================================
   // get
   // app.get('/welcome', cb)
-  app.get('/welcome', function(req, res) {
-    res.json({message: "And we've arrived at the welcome page, pre auth"});
+  app.get('/profile', isLoggedIn, function(req, res) {
+    res.json({user: req.user});
+  });
+
+// logout routes
+// =============================================================================
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/login');
+});
+
+// ADMIN ROUTES
+// =============================================================================
+  app.get('/admin', function(req, res) {
+    res.json({message: "Welcome to the Admin API panel"});
+  });
+
+  app.get('/admin/users', function(req, res) {
+    User.find({}, function(err, users) {
+      res.json(users);
+    });
   });
 
 // frontend routes
@@ -61,5 +77,15 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/views/index.html"));
   });
-
 };
+
+// route middleware to make sure user is logged in
+function isLoggedIn(req, res, next) {
+  // if user is authenticated in the session, carry on
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  // if they aren't, redirect them to the home page
+  res.redirect('/login');
+}

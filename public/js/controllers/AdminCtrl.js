@@ -12,5 +12,5 @@ angular.module("AdminCtrl", [])
       });
     }
     // this call is not working yet, so don't expect it to!
-    //getUsers();
+    getUsers();
   }]);
