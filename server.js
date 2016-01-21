@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // set the static files location /public
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 // routes
 // =============================================================================
