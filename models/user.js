@@ -5,7 +5,7 @@ var bcrypt = require("bcrypt-nodejs");
 var UserSchema = new Schema({
   local: {
     email: String,
-    password: String
+    password: String,
   },
   facebook: {
     id: String,
@@ -24,6 +24,11 @@ var UserSchema = new Schema({
     token: String,
     email: String,
     name: String
+  },
+  details: {
+    name: String,
+    location: String,
+    status: String
   }
 });
 

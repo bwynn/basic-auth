@@ -1,12 +1,12 @@
 // public/js/controllers/AdminCtrl.js
-angular.module("AdminCtrl", [])
-  .controller("AdminController", ["$scope", "User", function($scope, User) {
+angular.module("UsersCtrl", [])
+  .controller("AllUsersController", ["$scope", "AllUsers", function($scope, AllUsers) {
 
     $scope.hello = "Welcome to the admin panel";
     // get users
     function getUsers() {
       // get all of the users
-      User.get().then(function(users) {
+      AllUsers.get().then(function(users) {
         console.log(users.data);
         $scope.users = users.data;
       });

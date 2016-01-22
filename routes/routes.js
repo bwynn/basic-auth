@@ -52,6 +52,28 @@ app.post('/api/signup', passport.authenticate('local-signup', {
     res.json({user: req.user});
   });
 
+  // put
+  // app.put('/api/profile', isLoggedIn, cb)
+  app.put('/api/profile', isLoggedIn, function(req, res) {
+    User.findById(req.params.user_id, function(err, user) {
+      if (err) {
+        res.send(err);
+      }
+
+      user.details.name = req.body.name;
+      user.details.location = req.body.location;
+      user.details.status = req.body.status;
+
+      user.save(function(err) {
+        if (err) {
+          res.send(err);
+        }
+
+        res.json({message: "User successfully updated"});
+      });
+    });
+  });
+
 // logout routes
 // =============================================================================
 app.get('/api/logout', function(req, res) {
@@ -59,13 +81,9 @@ app.get('/api/logout', function(req, res) {
   res.redirect('/api/login');
 });
 
-// ADMIN ROUTES
+// USERS ROUTES
 // =============================================================================
-  app.get('/api/admin', function(req, res) {
-    res.json({message: "Welcome to the Admin API panel"});
-  });
-
-  app.get('/api/admin/users', function(req, res) {
+  app.get('/api/users', function(req, res) {
     User.find({}, function(err, users) {
       res.json(users);
     });

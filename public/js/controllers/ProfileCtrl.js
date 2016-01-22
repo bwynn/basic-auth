@@ -10,5 +10,9 @@ angular.module("ProfileCtrl", [])
       });
     }
 
+    function updateUser() {
+      getUser();
+    }
+
     getUser();
   }]);

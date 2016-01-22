@@ -19,9 +19,9 @@ angular.module("AppRoutes", [])
         templateUrl: "views/profile.html",
         controller: "ProfileController"
       })
-      .when('/admin', {
-        templateUrl: "views/admin.html",
-        controller: "AdminController"
+      .when('/users', {
+        templateUrl: "views/users.html",
+        controller: "AllUsersController"
       })
       .when('/logout', {
         templateUrl: "views/login.html",

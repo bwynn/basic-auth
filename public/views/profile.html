@@ -6,9 +6,29 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <div class="well">
-      <p><strong>id</strong>{{user.user._id}}</p>
-      <p><strong>email</strong>{{user.user.local.email}}</p>
-      <p><strong>password</strong>{{user.user.local.password}}</p>
+      <p><strong>name:</strong> {{user.user.details.name}}</p>
+      <p><strong>email:</strong> {{user.user.local.email}}</p>
+      <p><strong>location:</strong> {{user.user.details.location}}</p>
+      <p><strong>status:</strong> {{user.user.details.status}}</p>
+      <p><strong>id:</strong> {{user.user._id}}</p>
     </div>
+  </div>
+
+  <div class="panel panel-default">
+    <form action="/api/profile" method="put" ng-submit="getUser()">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" ng-model="name">
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" name="location" class="form-control" ng-model="location">
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <input type="text" name="status" class="form-control" ng-model="status">
+      </div>
+      <button type="submit">Update your profile</button>
+    </form>
   </div>
 </div>

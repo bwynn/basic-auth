@@ -7,7 +7,10 @@ angular.module("UserService", [])
         return $http.get('/api/profile');
       },
       post: function(userData) {
-        return $http.post('/api/profile');
+        return $http.post('/api/profile', userData);
+      },
+      put: function(userData) {
+        return $http.put('/api/profile', userData);
       }
     };
   }]);
