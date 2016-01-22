@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
   // app.post('/login', cb);
   // route to authenticate a user (POST http://localhost:8080/login)
   app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/profile', // redirect to the secure profile section
+    successRedirect: '/', // redirect to the secure profile section
     failureRedirect: '/', // redirect back to the login page
     failureFlash: true // allow flash messages
   }));
@@ -39,7 +39,7 @@ app.get('/signup', function(req, res) {
 // post
 // app.post('/sign-in', cb);
 app.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/profile', // redirect to secure profile
+  successRedirect: '/', // redirect to secure profile
   failureRedirect: '/', // redirect the back to the signup page
   failureFlash: true // allow flash messages
 }));

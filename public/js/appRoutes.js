@@ -15,9 +15,9 @@ angular.module("AppRoutes", [])
         templateUrl: "views/signup.html",
         controller: "SignupController"
       })
-      .when("/welcome", {
-        templateUrl: "views/welcome.html",
-        controller: "WelcomeController"
+      .when("/profile", {
+        templateUrl: "views/profile.html",
+        controller: "ProfileController"
       })
       .when('/admin', {
         templateUrl: "views/admin.html",

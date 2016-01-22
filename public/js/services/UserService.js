@@ -4,7 +4,7 @@ angular.module("UserService", [])
     return {
       // get all users
       get: function() {
-        return $http.get('/admin/users');
+        return $http.get('/profile');
       },
       post: function(userData) {
         return;

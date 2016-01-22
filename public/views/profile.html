@@ -1,3 +1,14 @@
-<div>
-  {{hello}}
+<div class="page-header text-center">
+  <h1>Profile Page</h1>
+  <a href='/logout' class="btn btn-default btn-sm">Logout</a>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="well">
+      <p><strong>id</strong>{{user.user._id}}</p>
+      <p><strong>email</strong>{{user.user.local.email}}</p>
+      <p><strong>password</strong>{{user.user.local.password}}</p>
+    </div>
+  </div>
 </div>
