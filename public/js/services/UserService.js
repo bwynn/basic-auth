@@ -4,10 +4,10 @@ angular.module("UserService", [])
     return {
       // get all users
       get: function() {
-        return $http.get('/profile');
+        return $http.get('/api/profile');
       },
       post: function(userData) {
-        return;
+        return $http.post('/api/profile');
       }
     };
   }]);

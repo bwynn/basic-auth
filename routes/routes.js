@@ -13,7 +13,7 @@ module.exports = function(app, passport) {
 // get user details
   // get
   // app.get('/login', cb);
-  app.get('/login', function(req, res) {
+  app.get('/api/login', function(req, res) {
 
     res.json({message: "Welcome to the login page!"});
   });
@@ -21,9 +21,9 @@ module.exports = function(app, passport) {
   // post
   // app.post('/login', cb);
   // route to authenticate a user (POST http://localhost:8080/login)
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/', // redirect to the secure profile section
-    failureRedirect: '/', // redirect back to the login page
+  app.post('/api/login', passport.authenticate('local-login', {
+    successRedirect: '/profile', // redirect to the secure profile section - USING NON API ROUTES FOR PROPER REDIRECT
+    failureRedirect: '/login', // redirect back to the login page - USING NON API ROUTES FOR PROPER REDIRECT
     failureFlash: true // allow flash messages
   }));
 
@@ -32,15 +32,15 @@ module.exports = function(app, passport) {
 // to create a new user
 // get
 // app.get('/signin', cb);
-app.get('/signup', function(req, res) {
+app.get('/api/signup', function(req, res) {
   res.json({message: "At the sign up page"});
 });
 
 // post
 // app.post('/sign-in', cb);
-app.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/', // redirect to secure profile
-  failureRedirect: '/', // redirect the back to the signup page
+app.post('/api/signup', passport.authenticate('local-signup', {
+  successRedirect: '/profile', // redirect to secure profile - USING NON API ROUTES FOR PROPER REDIRECT
+  failureRedirect: '/signup', // redirect the back to the signup page - USING NON API ROUTES FOR PROPER REDIRECT
   failureFlash: true // allow flash messages
 }));
 
@@ -48,24 +48,24 @@ app.post('/signup', passport.authenticate('local-signup', {
 // =============================================================================
   // get
   // app.get('/welcome', cb)
-  app.get('/profile', isLoggedIn, function(req, res) {
+  app.get('/api/profile', isLoggedIn, function(req, res) {
     res.json({user: req.user});
   });
 
 // logout routes
 // =============================================================================
-app.get('/logout', function(req, res) {
+app.get('/api/logout', function(req, res) {
   req.logout();
-  res.redirect('/login');
+  res.redirect('/api/login');
 });
 
 // ADMIN ROUTES
 // =============================================================================
-  app.get('/admin', function(req, res) {
+  app.get('/api/admin', function(req, res) {
     res.json({message: "Welcome to the Admin API panel"});
   });
 
-  app.get('/admin/users', function(req, res) {
+  app.get('/api/admin/users', function(req, res) {
     User.find({}, function(err, users) {
       res.json(users);
     });
@@ -87,5 +87,5 @@ function isLoggedIn(req, res, next) {
   }
 
   // if they aren't, redirect them to the home page
-  res.redirect('/login');
+  res.redirect('/api/login');
 }
