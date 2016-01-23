@@ -11,7 +11,9 @@ angular.module("ProfileCtrl", [])
     }
 
     function updateUser() {
-      getUser();
+      User.put({
+        id: $scope.user.user._id
+      });
     }
 
     getUser();

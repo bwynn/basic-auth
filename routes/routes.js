@@ -55,7 +55,9 @@ app.post('/api/signup', passport.authenticate('local-signup', {
   // put
   // app.put('/api/profile', isLoggedIn, cb)
   app.put('/api/profile', isLoggedIn, function(req, res) {
-    User.findById(req.params.user_id, function(err, user) {
+    console.log('+++++++++++++++++++++++++++');
+    console.log(req);
+    User.findById(req, function(err, user) {
       if (err) {
         res.send(err);
       }
