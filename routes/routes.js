@@ -74,7 +74,6 @@ app.post('/api/signup', passport.authenticate('local-signup', {
         }
 
         res.json({message: "User successfully updated"});
-        res.redirect('/profile');
       });
     });
   });
