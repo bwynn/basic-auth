@@ -10,11 +10,17 @@ angular.module("ProfileCtrl", [])
       });
     }
 
-    function updateUser() {
-      User.put({
-        id: $scope.user.user._id
-      });
-    }
-
     getUser();
+
+    /*function updateUser() {
+      User.put({
+        email: $scope.user.user.email,
+        name: $scope.name,
+        location: $scope.location,
+        status: $scope.status
+      }).then(function() {
+        console.log("user updated");
+        getUser();
+      });
+    }*/
   }]);

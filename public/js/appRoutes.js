@@ -5,7 +5,7 @@ angular.module("AppRoutes", [])
     $routeProvider
       .when("/", {
         templateUrl: "views/login.html",
-        controller: "ProfileController"
+        controller: "MainController"
       })
       .when("/login", {
         templateUrl: "views/login.html",

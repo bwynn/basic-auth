@@ -15,7 +15,7 @@
   </div>
 
   <div class="panel panel-default">
-    <form ng-submit="updateUser()">
+    <form action="/api/profile" method="put">
       <div class="form-group">
         <label>Name</label>
         <input type="text" name="name" class="form-control" ng-model="name">
@@ -28,7 +28,7 @@
         <label>Status</label>
         <input type="text" name="status" class="form-control" ng-model="status">
       </div>
-      <button type="submit">Update your profile</button>
+      <button type="submit" ng-click="updateUser()">Update your profile</button>
     </form>
   </div>
 </div>
