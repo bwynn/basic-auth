@@ -54,7 +54,7 @@ app.post('/api/signup', passport.authenticate('local-signup', {
 
   // put
   // app.put('/api/profile', isLoggedIn, cb)
-  app.put('/api/profile', isLoggedIn, function(req, res) {
+  app.post('/api/profile', isLoggedIn, function(req, res) {
     console.log('+++++++++++++++++++++++++++');
     console.log(req);
     User.findOne({"local.email": req.body.email}, function(err, user) {
@@ -74,6 +74,7 @@ app.post('/api/signup', passport.authenticate('local-signup', {
         }
 
         res.json({message: "User successfully updated"});
+        res.redirect('/profile');
       });
     });
   });
