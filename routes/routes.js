@@ -55,14 +55,14 @@ app.post('/api/signup', passport.authenticate('local-signup', {
   // put
   // app.put('/api/profile', isLoggedIn, cb)
   app.post('/api/profile', isLoggedIn, function(req, res) {
-    console.log('+++++++++++++++++++++++++++');
-    console.log(req);
-    User.findOne({"local.email": req.body.email}, function(err, user) {
+    //console.log('+++++++++++++++++++++++++++');
+    //console.log(req.session.passport.user);
+    User.findOne({"_id": req.session.passport.user}, function(err, user) {
       if (err) {
         res.send(err);
       }
-      console.log(req.body.email);
-      console.log(req.body);
+      //console.log(req.body.email);
+      //console.log(req.body);
 
       user.details.name = req.body.name;
       user.details.location = req.body.location;
