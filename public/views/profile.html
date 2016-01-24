@@ -1,6 +1,7 @@
 <div class="page-header text-center">
   <h1>Profile Page</h1>
   <a href='/logout' class="btn btn-default btn-sm">Logout</a>
+  <button ng-click="edit()" class="btn btn-default btn-sm">Edit Profile</button>
 </div>
 
 <div class="row">
@@ -14,7 +15,7 @@
     </div>
   </div>
 
-  <div class="panel panel-default">
+  <div class="panel panel-default col-sm-6 col-sm-offset-3" ng-show="update">
     <form ng-submit="updateUser()">
       <div class="form-group">
         <label>Name</label>
@@ -28,9 +29,14 @@
         <label>Status</label>
         <input type="text" name="status" class="form-control" ng-model="status">
       </div>
-      <button type="submit">Update your profile</button>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Update your profile</button>
+      </div>
     </form>
-  </div>
+  </div><!-- end form panel -->
+
 </div>
+
+
 
 <!-- action="/api/profile" method="post" -->
