@@ -17,9 +17,9 @@ angular.module("ProfileCtrl", [])
 
     // Utilizes the UserService factory function to provide a post to the db
     // then relies on several asynch promise resolutions based on the success
-    // of the db post.
+    // of the db put method.
     $scope.updateUser = function() {
-      User.post({
+      User.put({
         name : $scope.name,
         location: $scope.location,
         status: $scope.status
@@ -36,7 +36,7 @@ angular.module("ProfileCtrl", [])
     };
 
     // Relies on the UserService User object to retrieve db information and
-    // setting data 
+    // setting data
     function getUser() {
       User.get().then(function(user) {
         console.log(user.data);

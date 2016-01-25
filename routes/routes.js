@@ -54,10 +54,10 @@ app.post('/api/signup', passport.authenticate('local-signup', {
 
   // put
   // app.put('/api/profile', isLoggedIn, cb)
-  app.post('/api/profile', isLoggedIn, function(req, res) {
+  app.put('/api/profile', isLoggedIn, function(req, res) {
     // using the req.session.passport.user value (which is the _id in db)
     // to query db, and then checks login status using the isLoggedIn cb
-    // to determine the read/write permissions for the page. 
+    // to determine the read/write permissions for the page.
     console.log(req.session.passport.user);
     User.findOne({"_id": req.session.passport.user}, function(err, user) {
       if (err) {
