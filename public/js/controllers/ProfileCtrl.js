@@ -8,12 +8,30 @@ angular.module("ProfileCtrl", [])
     // user interaction to determine show/hide of view elements
     $scope.edit = function() {
       if ($scope.update === false) {
-        $scope.update = true;
+        $scope.update = true; // change state
       }
       else {
-        $scope.update = false;
+        $scope.update = false; // set state
       }
-    }
+    };
+
+    // delete an individual message
+    $scope.deleteComment = function(cmt) {
+      var arr = []; // create a local array var
+      $scope.msg.splice($scope.msg.indexOf(cmt), 1); // remove the item from $scope.msg
+      console.log($scope.msg); // let's see updated array
+      // iterate over all items in $scope.msg
+      for (var i = 0; i < $scope.msg.length; i++) {
+        var item = angular.toJson($scope.msg[i]); // stringify contents
+        arr.push(item); // push strungified contents into local array
+      }
+      // update user record of comments
+      User.comment({
+        comment: arr
+      }).then(function() {
+        getUser(); // invoke init function and update view's contents 
+      });
+    };
 
     // Utilizes the UserService factory function to provide a post to the db
     // then relies on several asynch promise resolutions based on the success
@@ -84,5 +102,5 @@ angular.module("ProfileCtrl", [])
       getUser();
     }
 
-    init(); // initialize 
+    init(); // initialize
   }]);
