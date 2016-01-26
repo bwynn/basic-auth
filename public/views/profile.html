@@ -15,6 +15,7 @@
     </div>
   </div>
 
+  <!-- edit profile form -->
   <div class="panel panel-default col-sm-6 col-sm-offset-3" ng-show="update">
     <form ng-submit="updateUser()">
       <div class="form-group">
@@ -33,7 +34,27 @@
         <button type="submit" class="btn btn-success">Update your profile</button>
       </div>
     </form>
-  </div><!-- end form panel -->
+  </div><!-- end edit profile form panel -->
+
+  <div class="well col-sm-6 col-sm-offset-3">
+    <form ng-submit="newMessage()">
+      <div class="form-group">
+        <label>Add a message!</label>
+        <input type="text" name="comment" class="form-control" ng-model="comment">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-danger">Submit Message</button>
+      </div>
+    </form>
+
+    <!-- add the messages after they've been added -->
+    <div ng-repeat="item in msg">
+      <div class="panel panel-default">
+        <p><strong>Comment:</strong> {{item.comment || "Add a new message!"}}</p>
+        <p><strong>Time:</strong> {{item.time}}</p>
+      </div>
+    </div>
+  </div>
 
 </div>
 

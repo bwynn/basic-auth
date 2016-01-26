@@ -28,7 +28,8 @@ var UserSchema = new Schema({
   details: {
     name: String,
     location: String,
-    status: String
+    status: String,
+    comment: [String]
   }
 });
 

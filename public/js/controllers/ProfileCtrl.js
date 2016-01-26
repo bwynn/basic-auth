@@ -5,6 +5,11 @@ angular.module("ProfileCtrl", [])
     // set a state value to allow show/hide of editing form
     $scope.update = false;
 
+    //$scope.user = getUser();
+    // set a local representation of all of the users messages
+    //console.log(user.data.user.details.comment);
+    //$scope.msgs = $scope.user.details.comment;
+
     // user interaction to determine show/hide of view elements
     $scope.edit = function() {
       if ($scope.update === false) {
@@ -32,6 +37,29 @@ angular.module("ProfileCtrl", [])
         // if that succeeded, then let's make sure we update the content
         // within the view using a promise.
         getUser();
+        $scope.update = false;
+      });
+    };
+
+    // $scope.newMessage is triggered on message update
+    $scope.newMessage = function() {
+      // create object
+      var obj = {};
+      // assign message
+      obj.comment = $scope.comment;
+      // assign timestamp
+      obj.time = new Date();
+      // push to msg[]
+      var str = angular.toJson(obj);
+      $scope.msg.push(str);
+      console.log($scope.msg);
+
+      // then
+      // put the msg[] back to the db
+      User.comment({
+        comment: $scope.msg
+      }).then(function() {
+        getUser();
       });
     };
 
@@ -41,6 +69,16 @@ angular.module("ProfileCtrl", [])
       User.get().then(function(user) {
         console.log(user.data);
         $scope.user = user.data;
+        $scope.msg = [];
+
+        for (var i = 0; i < user.data.user.details.comment.length; i++) {
+          var item = angular.fromJson(user.data.user.details.comment[i])
+          $scope.msg.push(item);
+        }
+
+        console.log($scope.msg);
+      }).then(function() {
+        $scope.comment = "";
       });
     }
 

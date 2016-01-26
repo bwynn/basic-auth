@@ -80,6 +80,26 @@ app.post('/api/signup', passport.authenticate('local-signup', {
     });
   });
 
+  // put new comment/message
+  app.put('/api/profile/comment', isLoggedIn, function(req, res) {
+    User.findOne({"_id": req.session.passport.user}, function(err, user) {
+      if (err) {
+        res.send(err);
+      }
+      console.log(req.body);
+
+      user.details.comment = req.body.comment;
+
+      user.save(function(err) {
+        if (err) {
+          res.send(err);
+        }
+
+        res.json({message: "User comments updated"});
+      });
+    });
+  })
+
 // logout routes
 // =============================================================================
 app.get('/api/logout', function(req, res) {

@@ -11,6 +11,9 @@ angular.module("UserService", [])
       },
       put: function(userData) {
         return $http.put('/api/profile', userData);
+      },
+      comment: function(userData) {
+        return $http.put('/api/profile/comment', userData);
       }
     };
   }]);
