@@ -48,7 +48,7 @@
     </form>
 
     <!-- add the messages after they've been added -->
-    <div ng-repeat="item in msg">
+    <div ng-repeat="item in msg" class="comments">
       <div class="panel panel-default">
         <p><strong>Comment:</strong> {{item.comment || "Add a new message!"}}</p>
         <p><strong>Time:</strong> {{item.time}}</p>
