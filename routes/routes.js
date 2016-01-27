@@ -3,6 +3,7 @@ var path = require("path");
 
 // model schema requirements
 var User = require('../models/user');
+var Post = require('../models/post');
 
 module.exports = function(app, passport) {
 // server routes
@@ -100,6 +101,19 @@ app.post('/api/signup', passport.authenticate('local-signup', {
     });
   })
 
+// Comment Post routes
+  // app.post('/api/newPost', isLoggedIn, function(req, res) {
+  // Post.findOne({"_id": req.session.passport.user}, function(err, post) {
+  // if (err) {
+  // res.send(err)
+  // }
+
+  // post.comment = req.body.comment;
+  // post.postedBy = req.session.passport.user
+  // post.time = req.body.time
+  //})
+//})
+
 // logout routes
 // =============================================================================
 app.get('/api/logout', function(req, res) {
@@ -110,7 +124,7 @@ app.get('/api/logout', function(req, res) {
 // USERS ROUTES
 // =============================================================================
   app.get('/api/users', function(req, res) {
-    User.find({}, function(err, users) {
+    User.find({"details.comment": {$exists: true}}, function(err, users) {
       res.json(users);
     });
   });
