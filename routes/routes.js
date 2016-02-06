@@ -8,6 +8,12 @@ var Post = require('../models/post');
 module.exports = function(app, passport) {
 // server routes
 // =============================================================================
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 // login routes
 // =============================================================================
@@ -26,6 +32,17 @@ module.exports = function(app, passport) {
     successRedirect: '/profile', // redirect to the secure profile section - USING NON API ROUTES FOR PROPER REDIRECT
     failureRedirect: '/login', // redirect back to the login page - USING NON API ROUTES FOR PROPER REDIRECT
     failureFlash: true // allow flash messages
+  }));
+
+  // facebook login routes
+  // ===========================================================================
+  // route for facebook authentication and login
+  app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+
+  // handle the callback after facebook has authenticated the user
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    failureRedirect: '/signup'
   }));
 
 // sign-up routes
@@ -99,20 +116,8 @@ app.post('/api/signup', passport.authenticate('local-signup', {
         res.json({message: "User comments updated"});
       });
     });
-  })
+  });
 
-// Comment Post routes
-  // app.post('/api/newPost', isLoggedIn, function(req, res) {
-  // Post.findOne({"_id": req.session.passport.user}, function(err, post) {
-  // if (err) {
-  // res.send(err)
-  // }
-
-  // post.comment = req.body.comment;
-  // post.postedBy = req.session.passport.user
-  // post.time = req.body.time
-  //})
-//})
 
 // logout routes
 // =============================================================================

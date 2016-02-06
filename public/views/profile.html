@@ -7,11 +7,12 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <div class="well">
-      <p><strong>name:</strong> {{user.user.details.name}}</p>
-      <p><strong>email:</strong> {{user.user.local.email}}</p>
+      <p><strong>name:</strong> {{user.user.details.name || user.user.facebook.name}}</p>
+      <p><strong>email:</strong> {{user.user.local.email || user.user.facebook.email}}</p>
       <p><strong>location:</strong> {{user.user.details.location}}</p>
       <p><strong>status:</strong> {{user.user.details.status}}</p>
-      <p><strong>id:</strong> {{user.user._id}}</p>
+      <p><strong>id:</strong> {{user.user._id || user.user.facebook.name}}</p>
+      <p><strong>token: </strong>{{user.user.facebook.token}}</p>
     </div>
   </div>
 
