@@ -18,6 +18,6 @@
     "jsonwebtoken": "latest"
   },
   "engines": {
-    "node": ">=0.12.2"
+    "node": "0.12.2"
   }
 }
