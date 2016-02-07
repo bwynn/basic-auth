@@ -2,13 +2,13 @@
 
 // load all packages
 var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
 
 // load up the user model
 var User = require("../models/user");
 
 // load the auth variables
-var configAuth = require('./auth');
+//var configAuth = require('./auth');
 
 module.exports = function(passport) {
 
@@ -118,7 +118,7 @@ passport.deserializeUser(function(id, done) {
   // =============================================================================
   // FACEBOOK LOGIN
   // =============================================================================
-  passport.use(new FacebookStrategy({
+  /*passport.use(new FacebookStrategy({
     // pull in our app id and secret from our auth.js file
     clientID: configAuth.facebookAuth.clientID,
     clientSecret: configAuth.facebookAuth.clientSecret,
@@ -165,5 +165,5 @@ passport.deserializeUser(function(id, done) {
         }
       });
     });
-  }));
+  }));*/
 };
