@@ -14,7 +14,7 @@ var session = require("express-session");
 // =============================================================================
 var config = require("./config/db");  // get access to exports from db.js
 var port = process.env.port || 8080;  // set the port to the host port or 8080
-mongoose.connect(config.uri);          // connect the schema to the db
+mongoose.connect(process.env.MONGOLAB_URI || config.database);          // connect the schema to the db
 require('./config/passport')(passport);       // pass passport for config
 
 //app.set('superSecret', config.secret);     // set the secret variable
