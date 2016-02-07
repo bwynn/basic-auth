@@ -13,8 +13,8 @@ var session = require("express-session");
 // configuration
 // =============================================================================
 var config = require("./config/db");  // get access to exports from db.js
-var port = process.env.PORT || 8080;  // set the port to the host port or 8080
-mongoose.connect(process.env.MONGOLAB_URI || config.database);          // connect the schema to the db
+var port = process.env.PORT || 8080;  // set the port to the host PORT (case-sensitive) or 8080
+mongoose.connect(process.env.MONGOLAB_URI || config.database);          // connect to the db URI or to the local db
 require('./config/passport')(passport);       // pass passport for config
 
 //app.set('superSecret', config.secret);     // set the secret variable
