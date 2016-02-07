@@ -15,7 +15,8 @@
     "cookie-parser": "latest",
     "method-override": "latest",
     "morgan": "latest",
-    "jsonwebtoken": "latest"
+    "jsonwebtoken": "latest",
+    "express-session": "latest"
   },
   "engines": {
     "node": "0.12.2"
